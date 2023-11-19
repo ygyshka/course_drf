@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
 from rest_framework import generics
 
 from users.models import User
+from users.permissions import IsStaff, IsSuperUser
 from users.serializer import UserRegisterSerializer, UserListSerializer
 
 
@@ -15,4 +17,4 @@ class UserListAPIView(generics.ListAPIView):
 
     serializer_class = UserListSerializer
     queryset = User.objects.all()
-    # permission_classes = [IsStaff, IsAdmin, IsSuperUser]
+    permission_classes = [IsStaff | IsSuperUser]
