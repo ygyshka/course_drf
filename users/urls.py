@@ -16,4 +16,5 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', UserRegister.as_view(), name='user_register'),
     path('list/', UserListAPIView.as_view(), name='user-list')
-]
+
+] # дописать настройки сохранения файлов пользователя
