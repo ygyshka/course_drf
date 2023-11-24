@@ -17,8 +17,11 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
 class HabitListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all().order_by('id')
     pagination_class = NotesPagination
+
+    def get_queryset(self):
+        user = self.request.user
+        return Habit.objects.filter(user=user).order_by('id')
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
