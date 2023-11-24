@@ -17,7 +17,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
 class HabitListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
+    queryset = Habit.objects.all().order_by('id')
     pagination_class = NotesPagination
 
 
