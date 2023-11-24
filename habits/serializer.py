@@ -15,4 +15,3 @@ class HabitSerializer(serializers.ModelSerializer):
             ValidAssociatedHabit(),
             ValidHabitIsNiceAndReward(),
             ]
-

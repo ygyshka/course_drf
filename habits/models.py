@@ -16,7 +16,6 @@ class Habit(models.Model):
     date = models.DateField(auto_now=True, verbose_name='дата создания')
     place = models.CharField(max_length=100, verbose_name='место', **constants.NULLABLE)
     is_nice = models.BooleanField(default=False, verbose_name='признак приятной привычки')
-    # associated_habit = models.CharField(max_length=150, verbose_name='связанная привычка', **constants.NULLABLE)
     associated_habit = models.ForeignKey('self', on_delete=models.CASCADE,
                                          verbose_name='связанная привычка', **constants.NULLABLE)
     periodicity = models.IntegerField(verbose_name='переодичность(количество повторений в неделю)')

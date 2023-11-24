@@ -28,14 +28,6 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
     permission_classes = [IsOwner]
 
 
-    # def get_permissions(self):
-    #     if not self.queryset.is_publish:
-    #         permission_classes = [IsOwner]
-    #     else:
-    #         permission_classes = [~IsOwner]
-    #     return [permission() for permission in permission_classes]
-
-
 class HabitUpdateAPIView(generics.UpdateAPIView):
 
     serializer_class = HabitSerializer
@@ -47,3 +39,9 @@ class HabitDestroyAPIView(generics.DestroyAPIView):
 
     serializer_class = HabitSerializer
     permission_classes = [IsOwner]
+
+
+class HabitPublishListAPIView(generics.ListAPIView):
+
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.filter(is_publish=True)

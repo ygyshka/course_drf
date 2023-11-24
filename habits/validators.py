@@ -53,8 +53,6 @@ class ValidAssociatedHabit:
             if not value.get('associated_habit').is_nice:
                 raise ValidationError("В связанные привычки могут попадать "
                                       "только привычки с признаком приятной привычки")
-            elif value.get('is_nice') and value.get('reward') is not None:
-                raise ValidationError("У приятной привычки не может быть вознаграждения или связанной привычки")
 
 
 class ValidHabitIsNiceAndReward:
@@ -64,5 +62,7 @@ class ValidHabitIsNiceAndReward:
 
     def __call__(self, value):
         print(value)
-        if value.get('is_nice') and value.get('reward') is not None or value.get('associated_habit') is not None:
+        if value.get('is_nice') and value.get('reward') is not None:
+            raise ValidationError("У приятной привычки не может быть вознаграждения или связанной привычки")
+        elif value.get('is_nice') and value.get('associated_habit') is not None:
             raise ValidationError("У приятной привычки не может быть вознаграждения или связанной привычки")
