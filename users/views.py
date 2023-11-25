@@ -19,4 +19,4 @@ class UserListAPIView(generics.ListAPIView):
 
     serializer_class = UserListSerializer
     queryset = User.objects.all()
-    permission_classes = [IsStaff | IsSuperUser]
+    # permission_classes = [IsStaff | IsSuperUser]

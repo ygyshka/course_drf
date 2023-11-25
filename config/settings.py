@@ -166,8 +166,8 @@ CACHES = {
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'cours.tasks.check_user_last_login',  # Путь к задаче
-        'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+        'task': 'habits.tasks.send_message_habits',  # Путь к задаче
+        'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждую минуту)
     },
 }
 
@@ -197,3 +197,11 @@ CORS_ALLOW_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://read-and-write.example.com",
 ]
+
+
+# CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
