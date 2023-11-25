@@ -9,9 +9,8 @@ class ValidTimeToDo:
         self.field = field
 
     def __call__(self, value):
-        reg = 120
         temp_val = dict(value).get(self.field)
-        if int(temp_val) > reg:
+        if int(temp_val) > 120:
             raise ValidationError("Время выполнения привычки не должно превышать 120 секунд")
 
 
@@ -21,10 +20,8 @@ class ValidPeriod:
         self.field = field
 
     def __call__(self, value):
-        min_step = 1
         temp_value = dict(value).get(self.field)
-        if int(temp_value) < min_step:
-            print(self.field)
+        if temp_value is not None and int(temp_value) < 1:
             raise ValidationError("Нельзя выполнять привычку реже, чем 1 раз в 7 дней")
 
 
@@ -48,7 +45,6 @@ class ValidAssociatedHabit:
 
     def __call__(self, value):
 
-        print(value.get('associated_habit'))
         if value.get('associated_habit'):
             if not value.get('associated_habit').is_nice:
                 raise ValidationError("В связанные привычки могут попадать "
@@ -61,7 +57,6 @@ class ValidHabitIsNiceAndReward:
         pass
 
     def __call__(self, value):
-        print(value)
         if value.get('is_nice') and value.get('reward') is not None:
             raise ValidationError("У приятной привычки не может быть вознаграждения или связанной привычки")
         elif value.get('is_nice') and value.get('associated_habit') is not None:
