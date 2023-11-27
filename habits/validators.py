@@ -21,7 +21,7 @@ class ValidPeriod:
 
     def __call__(self, value):
         temp_value = dict(value).get(self.field)
-        if temp_value is not None and int(temp_value) < 1:
+        if temp_value is not None and int(temp_value) <= 7:
             raise ValidationError("Нельзя выполнять привычку реже, чем 1 раз в 7 дней")
 
 

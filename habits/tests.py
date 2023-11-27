@@ -1,7 +1,6 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from habits.models import Habit
 from users.models import User
 
@@ -80,7 +79,7 @@ class HabitTestCase(APITestCase):
     def test_habit_list(self):
         """ Тестирование получения списка привычек """
 
-        response = self.client.get(f'/habits/list')
+        response = self.client.get('/habits/list')
         self.assertEqual(
             response.status_code, status.HTTP_200_OK
         )
