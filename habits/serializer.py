@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from habits.models import Habit
 from habits.validators import ValidTimeToDo, ValidPeriod, ValidAward, ValidAssociatedHabit, ValidHabitIsNiceAndReward
 
@@ -14,4 +13,4 @@ class HabitSerializer(serializers.ModelSerializer):
             ValidAward(field1='associated_habit', field2='reward'),
             ValidAssociatedHabit(),
             ValidHabitIsNiceAndReward(),
-            ]
+                    ]
