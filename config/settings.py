@@ -89,14 +89,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DATABASES_ENGINE'),
+#         'NAME': os.getenv('DATABASES_NAME'),
+#         'USER': os.getenv('DATABASES_USER'),
+#         'PASSWORD': os.getenv('DATABASES_PASSWORD'),
+#         'HOST': os.getenv('DATABASES_HOST'),
+#         'PORT': os.getenv('DATABASES_PORT')
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DATABASES_ENGINE'),
-        'NAME': os.getenv('DATABASES_NAME'),
-        'USER': os.getenv('DATABASES_USER'),
-        'PASSWORD': os.getenv('DATABASES_PASSWORD'),
-        'HOST': os.getenv('DATABASES_HOST'),
-        'PORT': os.getenv('DATABASES_PORT')
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        # 'HOST': os.getenv('DATABASES_HOST'),
+        # 'PORT': os.getenv('DATABASES_PORT')
     }
 }
 
@@ -202,7 +213,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 # CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_BROKER_URL = "redis://redis:6379/0"
+# CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
