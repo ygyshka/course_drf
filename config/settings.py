@@ -102,12 +102,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASES_ENGINE'),
+        'ENGINE': os.getenv('ENGINE_DB'),
         'NAME': os.getenv('POSTGRES_DB'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        # 'HOST': os.getenv('DATABASES_HOST'),
-        # 'PORT': os.getenv('DATABASES_PORT')
+        'HOST': 'db',
+        'PORT': os.getenv('DATABASES_PORT')
     }
 }
 
@@ -180,7 +180,7 @@ CACHES = {
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'habits.tasks.send_message_habits',  # Путь к задаче
-        'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждую минуту)
+        'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждую минуту)
     },
 }
 
@@ -212,9 +212,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-# CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
-CELERY_BROKER_URL = "redis://redis:6379/0"
-# CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
